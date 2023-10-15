@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>萬聖節活動心理測驗</title>
+</head>
+<body>
+    <h1>萬聖節活動心理測驗</h1>
+    <p>歡迎參加Cog&J酒吧的萬聖節活動心理測驗！共有五個問題，答案將決定你應該在酒吧裡和哪位員工喝shot。</p>
+
+    <form id="halloween-quiz">
+        <!-- 問題 1 -->
+        <p>1. 你最喜歡的萬聖節服裝是？</p>
+        <input type="radio" name="q1" value="witch"> 女巫
+        <input type="radio" name="q1" value="vampire"> 吸血鬼
+        <input type="radio" name="q1" value="zombie"> 僵尸
+        <input type="radio" name="q1" value="ghost"> 鬼魂
+
+        <!-- 問題 2 -->
+        <p>2. 你喜歡的萬聖節食物是？</p>
+        <input type="radio" name="q2" value="candy"> 糖果
+        <input type="radio" name="q2" value="pumpkin"> 南瓜派
+        <input type="radio" name="q2" value="caramel"> 焦糖蘋果
+
+        <!-- 問題 3 -->
+        <p>3. 你最喜歡的萬聖節電影是？</p>
+        <input type="radio" name="q3" value="halloween"> 《萬聖節》
+        <input type="radio" name="q3" value="nightmare"> 《噩夢之前的聖誕節》
+        <input type="radio" name="q3" value="beetlejuice"> 《剃須節》
+
+        <!-- 問題 4 -->
+        <p>4. 你在萬聖節最喜歡的活動是？</p>
+        <input type="radio" name="q4" value="costume"> 穿著奇裝異服
+        <input type="radio" name="q4" value="haunted"> 參觀鬼屋
+        <input type="radio" name="q4" value="party"> 參加派對
+
+        <!-- 問題 5 -->
+        <p>5. 你的萬聖節夜晚最終結束時，你會選擇？</p>
+        <input type="radio" name="q5" value="dance"> 與員工們一起跳舞
+        <input type="radio" name="q5" value="drink"> 與員工們一起喝shot
+        <input type="radio" name="q5" value="spooky"> 探索酒吧的詭異角落
+
+        <p><input type="submit" value="查看結果"></p>
+    </form>
+
+    <div id="result" style="display: none;">
+        <h2>測驗結果:</h2>
+        <p id="result-text"></p>
+    </div>
+
+    <script>
+        const quizForm = document.getElementById('halloween-quiz');
+        const resultDiv = document.getElementById('result');
+        const resultText = document.getElementById('result-text');
+
+        quizForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const answers = {
+                q1: quizForm.querySelector('input[name="q1"]:checked').value,
+                q2: quizForm.querySelector('input[name="q2"]:checked').value,
+                q3: quizForm.querySelector('input[name="q3"]:checked').value,
+                q4: quizForm.querySelector('input[name="q4"]:checked').value,
+                q5: quizForm.querySelector('input[name="q5"]:checked').value,
+            };
+
+            // 根據答案生成結果
+            let resultMessage = '恭喜！你要和';
+            switch (answers.q5) {
+                case 'dance':
+                    resultMessage += '奔奔';
+                    break;
+                case 'drink':
+                    resultMessage += 'Jack';
+                    break;
+                case 'spooky':
+                    resultMessage += 'Waiting';
+                    break;
+                default:
+                    resultMessage += 'Anna';
+            }
+
+            resultMessage += '一起喝shot！';
+
+            resultText.textContent = resultMessage;
+            resultDiv.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
